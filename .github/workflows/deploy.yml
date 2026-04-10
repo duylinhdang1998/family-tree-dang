@@ -46,7 +46,15 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /home/${{ secrets.VPS_USERNAME }}/family-tree-dang
+            cd /home/dlm/family-tree
+            services:
+              app:
+                image: ghcr.io/duylinhdang1998/family-tree-dang:latest
+                restart: unless-stopped
+                ports:
+                  - "1024:80"
+            COMPOSE
+
             echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             docker compose pull app
             docker compose up -d
