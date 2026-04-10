@@ -55,7 +55,15 @@ export function HomePage() {
   return (
     <main className="min-h-[100dvh] bg-white px-6 py-24">
       <div className="mx-auto max-w-3xl">
-        <p className="font-mono text-xs uppercase tracking-wider text-ink-100">
+        <div className="flex flex-col items-center">
+          <img
+            src="https://swdoxzpjminxjmhqtsft.supabase.co/storage/v1/object/public/Logo/logo%20(1).png"
+            alt="Logo gia phả"
+            className="h-24 w-24 rounded-lg object-contain"
+          />
+        </div>
+
+        <p className="mt-8 font-mono text-xs uppercase tracking-wider text-ink-100">
           Gia phả họ
         </p>
 

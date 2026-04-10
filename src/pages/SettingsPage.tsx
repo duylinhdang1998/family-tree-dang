@@ -23,7 +23,15 @@ export function SettingsPage() {
           Quay lại
         </Link>
 
-        <p className="mt-6 font-mono text-xs uppercase tracking-wider text-ink-100">
+        <div className="mt-6 flex flex-col items-center">
+          <img
+            src="https://swdoxzpjminxjmhqtsft.supabase.co/storage/v1/object/public/Logo/logo%20(1).png"
+            alt="Logo gia phả"
+            className="h-24 w-24 rounded-lg object-contain"
+          />
+        </div>
+
+        <p className="mt-8 font-mono text-xs uppercase tracking-wider text-ink-100">
           Cài đặt
         </p>
         <h1 className="mt-3 text-3xl font-medium tracking-tight text-ink-300">

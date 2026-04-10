@@ -37,7 +37,15 @@ export function LoginPage() {
   return (
     <main className="min-h-[100dvh] bg-white px-6 py-24">
       <div className="mx-auto w-full max-w-md">
-        <p className="font-mono text-xs uppercase tracking-wider text-ink-100">
+        <div className="flex flex-col items-center">
+          <img
+            src="https://swdoxzpjminxjmhqtsft.supabase.co/storage/v1/object/public/Logo/logo%20(1).png"
+            alt="Logo gia phả"
+            className="h-40 w-40 rounded-lg object-contain"
+          />
+        </div>
+
+        <p className="mt-8 font-mono text-xs uppercase tracking-wider text-ink-100">
           Quản trị
         </p>
         <h1 className="mt-3 text-3xl font-medium tracking-tight text-ink-300">

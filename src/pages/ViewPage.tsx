@@ -60,46 +60,30 @@ export function ViewPage() {
           Quay lại
         </button>
 
-        <p className="mt-6 font-mono text-xs uppercase tracking-wider text-ink-100">
-          Trang công khai
-        </p>
+        <div className="mt-6 flex flex-col items-center">
+          <img
+            src="https://swdoxzpjminxjmhqtsft.supabase.co/storage/v1/object/public/Logo/logo%20(1).png"
+            alt="Logo gia phả"
+            className="h-40 w-40 rounded-lg object-contain"
+          />
+        </div>
 
         {loading && (
-          <h1 className="mt-3 text-3xl font-medium tracking-tight text-ink-300">
-            Đang tải gia phả…
-          </h1>
+          <p className="mt-8 text-sm text-ink-100">Đang tải gia phả…</p>
         )}
 
         {error && (
-          <>
-            <h1 className="mt-3 text-3xl font-medium tracking-tight text-ink-300">
-              Không tìm thấy
-            </h1>
-            <p className="mt-4 max-w-[55ch] text-ink-100">{error}</p>
-          </>
+          <p className="mt-8 text-sm text-ink-100">{error}</p>
         )}
 
         {data && (
-          <>
-            <h1 className="mt-3 text-4xl font-medium tracking-tight text-ink-300">
-              {data.tree.name}
-            </h1>
-            <p className="mt-4 max-w-[55ch] text-ink-100">
-              Gia phả gồm{' '}
-              <span className="tabular text-ink-300">
-                {data.persons.length}
-              </span>{' '}
-              nhân khẩu.
-            </p>
-
-            <section className="mt-12">
-              <TreeCanvas
-                persons={data.persons}
-                rootId={data.tree.root_person_id}
-                onSelect={() => {}}
-              />
-            </section>
-          </>
+          <section className="mt-8">
+            <TreeCanvas
+              persons={data.persons}
+              rootId={data.tree.root_person_id}
+              onSelect={() => {}}
+            />
+          </section>
         )}
       </div>
     </main>
