@@ -1,26 +1,34 @@
-## gstack (REQUIRED — global install)
+## gstack (REQUIRED — vendored as git submodule)
 
-**Before doing ANY work, verify gstack is installed:**
+gstack is vendored into this repo at `.claude/skills/gstack/` as a git submodule.
+It is NOT installed globally — this repo is the only place gstack lives on your machine.
+
+**Before doing ANY work, verify gstack is present:**
 
 ```bash
-test -d ~/.claude/skills/gstack/bin && echo "GSTACK_OK" || echo "GSTACK_MISSING"
+test -d .claude/skills/gstack/bin && echo "GSTACK_OK" || echo "GSTACK_MISSING"
 ```
 
-If GSTACK_MISSING: STOP. Do not proceed. Tell the user:
+If GSTACK_MISSING (fresh clone without submodules), run:
 
-> gstack is required for all AI-assisted work in this repo.
-> Install it:
-> ```bash
-> git clone --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack
-> cd ~/.claude/skills/gstack && ./setup --team
-> ```
-> Then restart your AI coding tool.
+```bash
+git submodule update --init --recursive
+```
+
+If still missing after that, tell the user the submodule is broken and stop.
 
 Do not skip skills, ignore gstack errors, or work around missing gstack.
 
-Using gstack skills: After install, skills like /qa, /ship, /review, /investigate,
-and /browse are available. Use /browse for all web browsing.
-Use ~/.claude/skills/gstack/... for gstack file paths (the global path).
+Using gstack skills: skills like /qa, /ship, /review, /investigate, and /browse
+are available via the Skill tool. Use /browse for all web browsing.
+Use `.claude/skills/gstack/...` for gstack file paths (project-local, not global).
+
+To upgrade gstack:
+
+```bash
+cd .claude/skills/gstack && git pull origin main
+cd ../../.. && git add .claude/skills/gstack && git commit -m "chore: bump gstack submodule"
+```
 
 ## Skill routing
 
