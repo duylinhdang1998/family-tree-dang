@@ -1,0 +1,1 @@
+/Users/duylinhdang/Documents/Github/giaphahodang/.claude/skills/gstack/plan-ceo-review/SKILL.md

@@ -1,0 +1,9 @@
+# VPS deployment — place this file on your server
+# GitHub Actions will SSH in and run: docker compose pull && docker compose up -d
+
+services:
+  app:
+    image: ghcr.io/duylinhdang1998/family-tree-dang:latest
+    restart: unless-stopped
+    ports:
+      - "1024:80"
