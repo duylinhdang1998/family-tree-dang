@@ -16,7 +16,7 @@ export function SettingsPage() {
     <main className="min-h-[100dvh] bg-white px-6 py-24">
       <div className="mx-auto max-w-3xl">
         <Link
-          to="/"
+          to="/admin"
           className="inline-flex items-center gap-1.5 text-sm text-ink-100 transition-colors duration-200 ease-editorial hover:text-ink-300"
         >
           <ArrowLeft size={16} weight="bold" />

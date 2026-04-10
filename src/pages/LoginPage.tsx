@@ -21,7 +21,7 @@ export function LoginPage() {
   })
 
   if (session) {
-    return <Navigate to="/" replace />
+    return <Navigate to="/admin" replace />
   }
 
   async function onSubmit(values: LoginFormValues) {
@@ -31,7 +31,7 @@ export function LoginPage() {
       setSubmitError(error)
       return
     }
-    navigate('/', { replace: true })
+    navigate('/admin', { replace: true })
   }
 
   return (

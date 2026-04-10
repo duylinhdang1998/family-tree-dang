@@ -37,6 +37,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build-and-push
+    permissions:
+      packages: read
 
     steps:
       - name: Deploy to VPS
@@ -47,6 +49,8 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd /home/dlm/family-tree
+
+            cat > docker-compose.yml << 'COMPOSE'
             services:
               app:
                 image: ghcr.io/duylinhdang1998/family-tree-dang:latest
@@ -55,7 +59,7 @@ jobs:
                   - "1024:80"
             COMPOSE
 
-            echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             docker compose pull app
             docker compose up -d
             docker image prune -f
