@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import config from "./config";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-inter",
+// Space Grotesk: font hiển thị/UI chính (heading + body). Hỗ trợ tiếng Việt.
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin", "latin-ext", "vietnamese"],
+  variable: "--font-space",
 });
-const playfair = Playfair_Display({
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-playfair",
+// JetBrains Mono: code, badge, nav label, micro-copy. Hỗ trợ tiếng Việt.
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin", "latin-ext", "vietnamese"],
+  variable: "--font-jetbrains",
 });
 export const metadata: Metadata = {
   title: config.siteName,
@@ -24,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body
-        className={`${inter.variable} ${playfair.variable} font-sans antialiased relative`}
+        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased relative`}
       >
         {children}
       </body>

@@ -154,7 +154,7 @@ export default function MemberDetailModal() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6 bg-stone-900/40 backdrop-blur-sm"
+          className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6 bg-foreground/40 backdrop-blur-sm"
         >
           {/* Click-away backdrop (disabled while editing/creating to avoid accidental close) */}
           {!isEditing && !showCreateMember && (
@@ -172,7 +172,7 @@ export default function MemberDetailModal() {
             exit={{ scale: 0.96, opacity: 0, y: 15 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
             layoutDependency={false}
-            className="relative bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col border border-stone-200"
+            className="relative bg-card rounded-md shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col border border-border"
           >
             {/* Sticky Header Actions */}
             <div className="absolute top-4 right-4 sm:top-5 sm:right-5 z-20 flex items-center gap-2">
@@ -182,7 +182,7 @@ export default function MemberDetailModal() {
                   onClick={() => {
                     setIsEditing(false);
                   }}
-                  className="inline-flex items-center justify-center shrink-0 gap-1.5 px-3 py-2.5 bg-stone-100/80 text-stone-700 rounded-full hover:bg-stone-200 font-medium text-sm border border-stone-200/50 hover:-translate-y-1 hover:shadow-soft-hover transition-all duration-300"
+                  className="inline-flex items-center justify-center shrink-0 gap-1.5 px-3 py-2 bg-muted text-foreground rounded-md hover:bg-accent font-medium text-sm border border-border transition-colors duration-150"
                 >
                   <ArrowLeft className="size-4" />
                   <span className="hidden sm:inline">Quay lại</span>
@@ -210,7 +210,7 @@ export default function MemberDetailModal() {
               )}
               <button
                 onClick={closeModal}
-                className="size-10 flex items-center justify-center bg-stone-100/80 text-stone-600 rounded-full hover:bg-stone-200 hover:text-stone-900 shadow-sm border border-stone-200/50 transition-colors"
+                className="size-9 flex items-center justify-center bg-muted text-muted-foreground rounded-md hover:bg-accent hover:text-foreground border border-border transition-colors"
                 aria-label="Đóng"
               >
                 <X className="size-5" />
@@ -227,8 +227,8 @@ export default function MemberDetailModal() {
                   transition={{ duration: 0.2 }}
                   className="flex-1 min-h-[500px] flex items-center justify-center flex-col gap-4"
                 >
-                  <div className="size-10 border-4 border-amber-600 border-t-transparent rounded-full animate-spin"></div>
-                  <p className="text-stone-500 font-medium">Đang tải...</p>
+                  <div className="size-9 border-2 border-foreground border-t-transparent rounded-full animate-spin"></div>
+                  <p className="mono-label">Đang tải...</p>
                 </motion.div>
               ) : error ? (
                 <motion.div
@@ -239,13 +239,13 @@ export default function MemberDetailModal() {
                   transition={{ duration: 0.2 }}
                   className="flex-1 min-h-[400px] flex items-center justify-center flex-col gap-4 p-8 text-center"
                 >
-                  <div className="w-16 h-16 bg-red-50 text-red-500 rounded-full flex items-center justify-center mb-2 shadow-inner">
-                    <AlertCircle className="size-8" />
+                  <div className="w-14 h-14 bg-destructive/10 text-destructive rounded-md flex items-center justify-center mb-2 border border-destructive/20">
+                    <AlertCircle className="size-7" />
                   </div>
-                  <p className="text-red-600 font-medium text-lg">{error}</p>
+                  <p className="text-destructive font-medium">{error}</p>
                   <button
                     onClick={closeModal}
-                    className="btn mt-2 rounded-full"
+                    className="btn mt-2"
                   >
                     Đóng
                   </button>
@@ -260,7 +260,7 @@ export default function MemberDetailModal() {
                   transition={{ duration: 0.2 }}
                   className="flex-1 overflow-y-auto custom-scrollbar px-4 sm:px-8 pt-16 pb-8"
                 >
-                  <h2 className="text-xl font-serif font-bold text-stone-800 mb-6">
+                  <h2 className="text-xl font-display font-bold text-foreground tracking-tight mb-6">
                     Chỉnh sửa thành viên
                   </h2>
                   <MemberForm
@@ -285,7 +285,7 @@ export default function MemberDetailModal() {
                   transition={{ duration: 0.2 }}
                   className="flex-1 overflow-y-auto custom-scrollbar px-4 sm:px-8 pt-16 pb-8"
                 >
-                  <h2 className="text-xl font-serif font-bold text-stone-800 mb-6">
+                  <h2 className="text-xl font-display font-bold text-foreground tracking-tight mb-6">
                     Thêm thành viên mới
                   </h2>
                   <MemberForm

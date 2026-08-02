@@ -267,23 +267,23 @@ export default function MemberList({
   return (
     <>
       <div className="mb-8 relative">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white/60 backdrop-blur-xl p-4 sm:p-5 rounded-2xl shadow-sm border border-stone-200/60 transition-all duration-300 relative z-10 w-full">
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto flex-1">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-card p-3 sm:p-4 border border-border relative z-10 w-full">
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto flex-1">
             <div className="relative flex-1 max-w-sm group">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-stone-400 group-focus-within:text-amber-500 transition-colors" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground group-focus-within:text-foreground transition-colors" />
               <input
                 type="text"
                 placeholder="Tìm kiếm thành viên..."
-                className="bg-white/90 text-stone-900 w-full pl-10 pr-4 py-2.5 rounded-xl border border-stone-200/80 shadow-sm placeholder-stone-400 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-500/20 transition-all"
+                className="bg-background text-foreground w-full pl-10 pr-4 py-2.5 border border-border placeholder-muted-foreground focus:outline-none focus:border-foreground transition-colors"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto items-center">
               <div className="relative w-full sm:w-auto">
-                <Filter className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-stone-400 pointer-events-none" />
+                <Filter className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
                 <select
-                  className="appearance-none bg-white/90 text-stone-700 w-full sm:w-40 pl-9 pr-8 py-2.5 rounded-xl border border-stone-200/80 shadow-sm focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-500/20 hover:border-amber-300 font-medium text-sm transition-all focus:bg-white"
+                  className="appearance-none bg-background text-foreground w-full sm:w-40 pl-9 pr-8 py-2.5 border border-border focus:outline-none focus:border-foreground hover:border-foreground/50 font-mono text-xs uppercase tracking-wider transition-colors"
                   value={filterOption}
                   onChange={(e) => setFilterOption(e.target.value)}
                 >
@@ -297,7 +297,7 @@ export default function MemberList({
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                   <svg
-                    className="size-4 text-stone-400"
+                    className="size-4 text-muted-foreground"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -313,9 +313,9 @@ export default function MemberList({
               </div>
 
               <div className="relative w-full sm:w-auto">
-                <ArrowUpDown className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-stone-400 pointer-events-none" />
+                <ArrowUpDown className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
                 <select
-                  className="appearance-none bg-white/90 text-stone-700 w-full sm:w-52 pl-9 pr-8 py-2.5 rounded-xl border border-stone-200/80 shadow-sm focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-500/20 hover:border-amber-300 font-medium text-sm transition-all focus:bg-white"
+                  className="appearance-none bg-background text-foreground w-full sm:w-52 pl-9 pr-8 py-2.5 border border-border focus:outline-none focus:border-foreground hover:border-foreground/50 font-mono text-xs uppercase tracking-wider transition-colors"
                   value={sortOption}
                   onChange={(e) => setSortOption(e.target.value)}
                 >
@@ -332,7 +332,7 @@ export default function MemberList({
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                   <svg
-                    className="size-4 text-stone-400"
+                    className="size-4 text-muted-foreground"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -393,18 +393,18 @@ export default function MemberList({
                 return (
                   <div key={gen} className="space-y-6">
                     <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-stone-200"></div>
-                      <h3 className="text-lg font-serif font-bold text-amber-800 bg-amber-50 px-4 py-1.5 rounded-full border border-amber-200/50 shadow-sm">
+                      <div className="h-px flex-1 bg-border"></div>
+                      <h3 className="font-mono text-xs uppercase tracking-widest text-foreground border border-border bg-card px-3 py-1">
                         {gen === "0" ? "Chưa xác định đời" : `Đời thứ ${gen}`}
                       </h3>
-                      <div className="h-px flex-1 bg-stone-200"></div>
+                      <div className="h-px flex-1 bg-border"></div>
                     </div>
                     <div className="space-y-12">
                       {Array.from(familiesMap.values()).map(
                         (famPersons, idx) => (
                           <div
                             key={idx}
-                            className="relative bg-white border border-stone-300 rounded-[2.5rem] p-5 sm:p-8 shadow-sm"
+                            className="relative bg-card border border-border p-5 sm:p-8"
                           >
                             {(() => {
                               const firstBloodline =
@@ -430,7 +430,7 @@ export default function MemberList({
                               if (!label) return null;
 
                               return (
-                                <div className="absolute -top-3 left-8 px-3 py-0.5 bg-stone-100 text-xs font-bold text-stone-600 tracking-widest border border-stone-300 rounded-full shadow-sm z-20">
+                                <div className="absolute -top-2.5 left-6 px-2 py-0.5 bg-card font-mono text-[10px] uppercase tracking-widest text-muted-foreground border border-border z-20">
                                   {label}
                                 </div>
                               );
@@ -558,9 +558,9 @@ export default function MemberList({
                                       {isCouple && (
                                         <>
                                           {/* Desktop & Tablet background */}
-                                          <div className="hidden md:block absolute -inset-3 lg:-inset-4 bg-amber-50/70 border border-amber-200/80 rounded-4xl shadow-[0_2px_8px_-4px_rgba(0,0,0,0.05)] z-0"></div>
+                                          <div className="hidden md:block absolute -inset-3 lg:-inset-4 bg-muted/50 border border-border z-0"></div>
                                           {/* Mobile background */}
-                                          <div className="md:hidden absolute -inset-2 bg-amber-50/70 border border-amber-200/80 rounded-3xl shadow-[0_2px_8px_-4px_rgba(0,0,0,0.05)] z-0"></div>
+                                          <div className="md:hidden absolute -inset-2 bg-muted/50 border border-border z-0"></div>
                                         </>
                                       )}
                                       <div
@@ -575,12 +575,12 @@ export default function MemberList({
                                             {/* Visual link between spouses (desktop >= md) */}
                                             {isCouple &&
                                               pIdx < group.length - 1 && (
-                                                <div className="hidden md:block absolute top-[50%] -right-3 w-6 h-0.5 bg-amber-300 z-10 translate-x-1/2"></div>
+                                                <div className="hidden md:block absolute top-[50%] -right-3 w-6 h-px bg-border z-10 translate-x-1/2"></div>
                                               )}
                                             {/* Visual link between spouses (mobile < md) */}
                                             {isCouple &&
                                               pIdx < group.length - 1 && (
-                                                <div className="md:hidden absolute -bottom-6 left-1/2 w-0.5 h-6 bg-amber-300 z-10 -translate-x-1/2"></div>
+                                                <div className="md:hidden absolute -bottom-6 left-1/2 w-px h-6 bg-border z-10 -translate-x-1/2"></div>
                                               )}
                                           </div>
                                         ))}
@@ -606,7 +606,7 @@ export default function MemberList({
           </div>
         )
       ) : (
-        <div className="text-center py-12 text-stone-400 italic">
+        <div className="text-center py-12 mono-label">
           {initialPersons.length > 0
             ? "Không tìm thấy thành viên phù hợp."
             : "Chưa có thành viên nào. Hãy thêm thành viên đầu tiên."}

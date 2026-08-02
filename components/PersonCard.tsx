@@ -25,18 +25,13 @@ export default function PersonCard({ person }: PersonCardProps) {
   return (
     <button
       onClick={() => setMemberModalId(person.id)}
-      className={`group block relative bg-white/60 p-2 sm:p-4 rounded-3xl shadow-soft border border-border hover:border-tertiary hover:-translate-y-1 hover:shadow-soft-hover hover:bg-surface/90 transition-all duration-300 overflow-hidden
-        ${isDeceased ? "opacity-80 grayscalePer-[0.3]" : ""}`}
+      className={`group block relative bg-card p-3 sm:p-4 rounded-md border border-border hover:border-foreground/40 transition-colors duration-150 overflow-hidden
+        ${isDeceased ? "opacity-80" : ""}`}
     >
-      {/* Decorative gradient blob */}
-      {/* <div
-        className={`absolute -right-10 -top-10 w-32 h-32 rounded-full blur-[50px] opacity-20 transition-all duration-500 group-hover:opacity-40 group-hover:scale-125 ${person.gender === "male" ? "bg-sky-400" : person.gender === "female" ? "bg-rose-400" : "bg-stone-400"}`}
-      /> */}
-
       <div className="flex items-center space-x-4 relative z-10">
         <div className="relative">
           <div
-            className={`size-14 sm:size-16 rounded-full flex items-center justify-center text-xl font-bold text-white overflow-hidden shrink-0 shadow-lg ring-2 ring-white transition-transform duration-300 group-hover:scale-105
+            className={`size-14 sm:size-16 rounded-full flex items-center justify-center text-xl font-bold text-white overflow-hidden shrink-0 ring-1 ring-border
             ${getAvatarBg(person.gender)}`}
           >
             {person.avatar_url ? (
@@ -54,7 +49,7 @@ export default function PersonCard({ person }: PersonCardProps) {
           </div>
           {/* Gender Indicator Icon */}
           <div
-            className={`absolute bottom-0 right-0 size-5 rounded-full ring-2 ring-white shadow-sm flex items-center justify-center ${getGenderStyle(person.gender)}`}
+            className={`absolute bottom-0 right-0 size-5 rounded-full ring-2 ring-card flex items-center justify-center ${getGenderStyle(person.gender)}`}
           >
             {person.gender === "male" ? (
               <MaleIcon className="size-5" />
@@ -65,12 +60,12 @@ export default function PersonCard({ person }: PersonCardProps) {
         </div>
 
         <div className="flex-1 min-w-0">
-          <h3 className="text-base text-left sm:text-lg font-bold text-stone-900 group-hover:text-amber-700 transition-colors truncate mb-1.5">
+          <h3 className="text-base text-left sm:text-lg font-display font-semibold text-foreground tracking-tight truncate mb-1.5">
             {person.full_name}
           </h3>
-          <p className="text-sm font-medium text-stone-500 truncate flex items-center gap-1.5">
+          <p className="font-mono text-xs text-muted-foreground truncate flex items-center gap-1.5">
             <svg
-              className="size-4 shrink-0 text-stone-400"
+              className="size-3.5 shrink-0 text-muted-foreground"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -94,15 +89,7 @@ export default function PersonCard({ person }: PersonCardProps) {
             person.generation != null) && (
             <div className="flex flex-wrap items-center gap-1.5 shrink-0 mt-2">
               {person.is_in_law && (
-                <span
-                  className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-bold uppercase tracking-widest shadow-xs border ${
-                    person.gender === "male"
-                      ? "bg-sky-50 text-sky-700 border-sky-200/60"
-                      : person.gender === "female"
-                        ? "bg-rose-50 text-rose-700 border-rose-200/60"
-                        : "bg-stone-50 text-stone-700 border-stone-200/60"
-                  }`}
-                >
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm font-mono text-[10px] uppercase tracking-widest border border-border bg-muted text-muted-foreground">
                   {person.gender === "male"
                     ? "Rể"
                     : person.gender === "female"
@@ -111,19 +98,19 @@ export default function PersonCard({ person }: PersonCardProps) {
                 </span>
               )}
               {person.birth_order != null && (
-                <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-bold bg-amber-50 text-amber-700 border border-amber-200/60 uppercase tracking-widest shadow-xs">
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm font-mono text-[10px] uppercase tracking-widest border border-border bg-muted text-muted-foreground">
                   {person.birth_order === 1
                     ? "Con trưởng"
                     : `Con thứ ${person.birth_order}`}
                 </span>
               )}
               {person.generation != null && (
-                <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/60 uppercase tracking-widest shadow-xs">
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm font-mono text-[10px] uppercase tracking-widest border border-border bg-muted text-muted-foreground">
                   Đời thứ {person.generation}
                 </span>
               )}
               {isDeceased && (
-                <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-bold bg-stone-100 text-stone-500 uppercase tracking-widest border border-stone-200/60 shadow-xs">
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm font-mono text-[10px] uppercase tracking-widest border border-border bg-muted text-muted-foreground">
                   Đã mất
                 </span>
               )}

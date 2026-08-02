@@ -1,41 +1,163 @@
 @import "tailwindcss";
 
+/* ============================================================
+   DESIGN SYSTEM — "ApiPay" (neutral / technical)
+   Nguồn: docs/design-system.md
+   Semantic token lưu dạng HSL channel (H S% L%), wrap bằng hsl().
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Semantic (Light) */
+  --background: 210 40% 99%;
+  --foreground: 0 0% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 3.9%;
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 210 30% 96%;
+  --secondary-foreground: 0 0% 9%;
+  --muted: 210 30% 96%;
+  --muted-foreground: 210 15% 35%;
+  --accent: 210 30% 96%;
+  --accent-foreground: 0 0% 9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 210 20% 92%;
+  --input: 0 0% 89.8%;
+  --ring: 0 0% 3.9%;
+
+  --radius: 0.25rem;
 }
 
+.dark {
+  --background: 0 5% 8%;
+  --foreground: 0 0% 95%;
+  --card: 0 8% 9%;
+  --card-foreground: 0 0% 95%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 10%;
+  --secondary: 0 7% 12%;
+  --secondary-foreground: 0 0% 95%;
+  --muted: 0 7% 12%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 0 8% 16%;
+  --accent-foreground: 0 0% 95%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 6% 20%;
+  --input: 0 6% 20%;
+  --ring: 0 0% 75%;
+}
+
+/* ---- Token mapping (theme aware, driven by :root / .dark) ---- */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Design semantic colors */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* Legacy aliases (giữ để component cũ không phải sửa) — nay do token điều khiển */
+  --color-primary: hsl(var(--primary));
+  --color-secondary: hsl(var(--muted-foreground));
+  --color-tertiary: #dd7400; /* amber accent (design amber-600) */
+  --color-neutral: hsl(var(--background));
+  --color-surface: hsl(var(--card));
+  --color-border: hsl(var(--border));
+  --color-error: hsl(var(--destructive));
 
   /* Typography */
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-space);
+  --font-serif: var(--font-space);
+  --font-display: var(--font-space);
+  --font-mono: var(--font-jetbrains);
 
-  --color-primary: #1c1917;
-  --color-secondary: #57534e;
-  --color-tertiary: #d97706;
-  --color-neutral: #fafaf9;
-  --color-surface: #ffffff;
-  --color-border: #e7e5e4;
-  --color-error: #dc2626;
+  /* Radius (design: base 4px, near-square developer-tool) */
+  --radius-sm: calc(var(--radius) - 4px); /* 0px  */
+  --radius-md: calc(var(--radius) - 2px); /* 2px  */
+  --radius-lg: var(--radius); /* 4px  */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 1rem; /* 16px */
+  --radius-3xl: 1.5rem; /* 24px */
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-3xl: 24px;
+  --tracking-tight: -0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
 
-  --shadow-soft: 0 8px 30px rgb(0 0 0 / 0.04);
-  --shadow-soft-hover: 0 20px 40px rgb(0 0 0 / 0.08);
+  /* Dev-tool: gần như không shadow, phân tách bằng viền 1px */
+  --shadow-soft: none;
+  --shadow-soft-hover: none;
 }
 
+/* ---- Palette override: đổi tông toàn app không cần sửa JSX ----
+   stone (xám ấm) -> slate (xám lạnh) ; rose -> red ; amber -> amber design */
+@theme {
+  --color-stone-50: #f8fafc;
+  --color-stone-100: #f1f5f9;
+  --color-stone-200: #e2e8f0;
+  --color-stone-300: #cbd5e1;
+  --color-stone-400: #94a3b8;
+  --color-stone-500: #64748b;
+  --color-stone-600: #475569;
+  --color-stone-700: #334155;
+  --color-stone-800: #1e293b;
+  --color-stone-900: #0f172a;
+  --color-stone-950: #020617;
+
+  --color-rose-50: #fef2f2;
+  --color-rose-100: #fee2e2;
+  --color-rose-200: #fecaca;
+  --color-rose-300: #fca5a5;
+  --color-rose-400: #f87171;
+  --color-rose-500: #ef4444;
+  --color-rose-600: #e40014;
+  --color-rose-700: #b91c1c;
+  --color-rose-800: #9f0712;
+  --color-rose-900: #82181a;
+
+  --color-amber-300: #ffd236;
+  --color-amber-400: #fcbb00;
+  --color-amber-500: #f99c00;
+  --color-amber-600: #dd7400;
+
+  /* Flat: bỏ gần hết shadow, chỉ giữ chút cho overlay (dropdown/modal) */
+  --shadow-2xs: none;
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow: none;
+  --shadow-md: 0 1px 0 0 rgb(0 0 0 / 0.04);
+  --shadow-lg: 0 8px 24px -12px rgb(0 0 0 / 0.18);
+  --shadow-xl: 0 12px 32px -14px rgb(0 0 0 / 0.2);
+  --shadow-2xl: 0 16px 40px -16px rgb(0 0 0 / 0.24);
+  --shadow-inner: none;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
 body {
-  background: var(
-    --color-neutral
-  ); /* Use neutral as default background per design */
-  color: var(--color-primary); /* Use primary for text */
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-space), system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.025em;
 }
 
 /* Fix iOS auto-zoom when focusing on inputs */
@@ -53,45 +175,61 @@ select {
   cursor: pointer;
 }
 
-/* Design System Buttons */
+/* ============================================================
+   COMPONENT CLASSES (giữ tên cũ, restyle theo design system)
+   ============================================================ */
+
+/* Buttons — phẳng, góc 4px, không shadow, không nhấc-lên */
 .btn-primary {
-  @apply inline-flex items-center justify-center shrink-0 gap-1.5 px-4 py-4 bg-primary text-surface rounded-xl hover:bg-[#292524] transition-all duration-300 font-medium hover:-translate-y-1 hover:shadow-soft-hover;
+  @apply inline-flex items-center justify-center shrink-0 gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-md text-sm font-medium tracking-tight transition-colors duration-150 hover:opacity-90;
 }
 
 .btn-amber {
-  @apply inline-flex items-center justify-center shrink-0 gap-1.5 px-3 py-2.5 bg-tertiary text-primary rounded-full transition-all duration-300 font-medium hover:-translate-y-1 hover:shadow-soft-hover;
+  @apply inline-flex items-center justify-center shrink-0 gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 hover:opacity-90;
+  background: var(--color-tertiary);
+  color: #171717;
 }
 
 .btn-outline,
 .btn {
-  @apply inline-flex items-center justify-center shrink-0 gap-1.5 px-4 py-4 bg-transparent text-secondary rounded-xl border border-border hover:bg-neutral transition-all duration-300 font-medium hover:-translate-y-1 hover:shadow-soft-hover;
+  @apply inline-flex items-center justify-center shrink-0 gap-2 px-4 py-2.5 bg-transparent text-foreground rounded-md text-sm border border-border font-medium tracking-tight transition-colors duration-150 hover:bg-muted;
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center shrink-0 gap-1.5 px-4 py-4 bg-secondary text-surface rounded-xl hover:bg-stone-700 transition-all duration-300 font-medium hover:-translate-y-1 hover:shadow-soft-hover;
+  @apply inline-flex items-center justify-center shrink-0 gap-2 px-4 py-2.5 bg-muted text-foreground rounded-md text-sm border border-border font-medium tracking-tight transition-colors duration-150 hover:bg-accent;
 }
 
 .badge-error {
-  @apply inline-flex items-center px-2 py-1 bg-error text-surface rounded-sm text-xs font-medium;
+  @apply inline-flex items-center px-2 py-0.5 bg-destructive text-destructive-foreground rounded-sm font-mono text-[11px] uppercase tracking-wider;
 }
 
+/* Card phẳng: viền 1px, góc 4px, không blur/shadow */
+.card,
 .card-feature {
-  @apply bg-white/70 backdrop-blur-xl rounded-3xl p-[32px] shadow-soft hover:-translate-y-1 hover:shadow-soft-hover transition-all duration-300;
+  @apply bg-card rounded-md p-6 border border-border transition-colors duration-150;
+}
+.card-feature:hover {
+  @apply border-foreground/30;
 }
 
 .title {
-  @apply text-2xl sm:text-3xl font-serif font-bold text-primary;
+  @apply text-2xl sm:text-3xl font-display font-bold text-foreground tracking-tight;
 }
 
-/* Typography Overrides */
+/* Nhãn mono IN HOA — dấu nhận diện dev-tool */
+.mono-label {
+  @apply font-mono text-[11px] uppercase tracking-widest text-muted-foreground;
+}
+
+/* ---- Typography helpers ---- */
 .headline-display {
-  @apply font-serif text-[64px] font-bold leading-[1.1] tracking-[-0.02em];
+  @apply font-display text-[48px] font-semibold leading-[1.35] tracking-[-0.025em];
 }
 .headline-lg {
-  @apply font-serif text-[30px] font-bold leading-[1.2];
+  @apply font-display text-[30px] font-bold leading-[1.2] tracking-tight;
 }
 .headline-md {
-  @apply font-serif text-[24px] font-semibold leading-[1.3];
+  @apply font-display text-[24px] font-semibold leading-[1.3] tracking-tight;
 }
 .body-lg {
   @apply font-sans text-[18px] font-normal leading-[1.6];
@@ -103,8 +241,8 @@ select {
   @apply font-sans text-[14px] font-normal leading-[1.4];
 }
 .label-lg {
-  @apply font-sans text-[14px] font-semibold leading-[1];
+  @apply font-mono text-[13px] font-semibold leading-[1] tracking-wider uppercase;
 }
 .label-md {
-  @apply font-sans text-[12px] font-medium leading-[1];
+  @apply font-mono text-[12px] font-medium leading-[1] tracking-wider uppercase;
 }

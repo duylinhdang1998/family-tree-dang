@@ -37,9 +37,9 @@ export default function HeaderMenu() {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 pl-2 pr-4 py-1.5 rounded-full hover:bg-stone-100 transition-all duration-200 border border-transparent hover:border-stone-200"
+        className="flex items-center gap-2 pl-1.5 pr-2.5 py-1.5 rounded-md hover:bg-muted transition-colors duration-150 border border-transparent hover:border-border"
       >
-        <div className="size-8 rounded-full bg-linear-to-br from-amber-200 to-amber-100 text-amber-800 flex items-center justify-center font-bold shadow-sm ring-1 ring-amber-300/50">
+        <div className="size-7 rounded-md bg-primary text-primary-foreground flex items-center justify-center font-mono text-sm font-semibold">
           {userEmail ? (
             userEmail.charAt(0).toUpperCase()
           ) : (
@@ -47,24 +47,22 @@ export default function HeaderMenu() {
           )}
         </div>
         <ChevronDown
-          className={`size-4 text-stone-500 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+          className={`size-4 text-muted-foreground transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute right-0 mt-2 w-56 bg-surface rounded-3xl shadow-soft border border-border py-2 z-50 overflow-hidden"
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+            transition={{ duration: 0.12, ease: "easeOut" }}
+            className="absolute right-0 mt-2 w-60 bg-card rounded-md shadow-lg border border-border py-1.5 z-50 overflow-hidden"
           >
-            <div className="px-4 py-3 border-b border-stone-100 bg-stone-50/50">
-              <p className="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-0.5">
-                Tài khoản
-              </p>
-              <p className="text-sm font-medium text-stone-900 truncate">
+            <div className="px-4 py-3 border-b border-border">
+              <p className="mono-label mb-1">Tài khoản</p>
+              <p className="text-sm font-medium text-foreground truncate">
                 {userEmail}
               </p>
             </div>
@@ -73,84 +71,82 @@ export default function HeaderMenu() {
               <Link
                 href="/dashboard"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-stone-700 hover:text-amber-700 hover:bg-amber-50 transition-colors"
+                className="flex items-center gap-2.5 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
               >
-                <Network className="size-4" />
+                <Network className="size-4 text-muted-foreground" />
                 Bảng điều khiển
               </Link>
 
               <Link
                 href="/dashboard/members"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-stone-700 hover:text-amber-700 hover:bg-amber-50 transition-colors"
+                className="flex items-center gap-2.5 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
               >
-                <Network className="size-4" />
+                <Network className="size-4 text-muted-foreground" />
                 Cây gia phả
               </Link>
 
               <Link
                 href="/dashboard/kinship"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-stone-700 hover:text-blue-700 hover:bg-blue-50 transition-colors"
+                className="flex items-center gap-2.5 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
               >
-                <GitMerge className="size-4" />
+                <GitMerge className="size-4 text-muted-foreground" />
                 Tra cứu danh xưng
               </Link>
 
               <Link
                 href="/dashboard/stats"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-stone-700 hover:text-purple-700 hover:bg-purple-50 transition-colors"
+                className="flex items-center gap-2.5 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
               >
-                <BarChart2 className="size-4" />
+                <BarChart2 className="size-4 text-muted-foreground" />
                 Thống kê
               </Link>
 
               {isAdmin && (
                 <>
-                  <div className="px-4 py-2 mt-1">
-                    <p className="text-[10px] font-bold text-rose-500 uppercase tracking-wider">
-                      Quản trị viên
-                    </p>
+                  <div className="px-4 pt-3 pb-1">
+                    <p className="mono-label">Quản trị viên</p>
                   </div>
 
                   <Link
                     href="/dashboard/users"
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-stone-700 hover:text-rose-700 hover:bg-rose-50 transition-colors"
+                    className="flex items-center gap-2.5 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
                   >
-                    <Users className="size-4" />
+                    <Users className="size-4 text-muted-foreground" />
                     Quản lý Người dùng
                   </Link>
 
                   <Link
                     href="/dashboard/lineage"
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-stone-700 hover:text-indigo-700 hover:bg-indigo-50 transition-colors"
+                    className="flex items-center gap-2.5 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
                   >
-                    <Network className="size-4" />
+                    <Network className="size-4 text-muted-foreground" />
                     Thứ tự gia phả
                   </Link>
 
                   <Link
                     href="/dashboard/data"
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-stone-700 hover:text-teal-700 hover:bg-teal-50 transition-colors"
+                    className="flex items-center gap-2.5 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
                   >
-                    <Database className="size-4" />
+                    <Database className="size-4 text-muted-foreground" />
                     Sao lưu & Phục hồi
                   </Link>
                 </>
               )}
 
-              <div className="h-px bg-stone-100 my-1 mx-4" />
+              <div className="h-px bg-border my-1.5" />
 
               <Link
                 href="/about"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-stone-700 hover:text-rose-700 hover:bg-rose-50 transition-colors"
+                className="flex items-center gap-2.5 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
               >
-                <Info className="size-4" />
+                <Info className="size-4 text-muted-foreground" />
                 Giới thiệu
               </Link>
 

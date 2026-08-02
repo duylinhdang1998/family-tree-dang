@@ -32,9 +32,9 @@ export default function FamilyNodeCard({
     <div
       onClick={onClickCard}
       className={`
-        group py-2 px-1 flex flex-col items-center justify-start transition-all duration-300 hover:-translate-y-1 rounded-3xl relative h-full
+        group py-2 px-1 flex flex-col items-center justify-start transition-colors duration-150 rounded-md relative h-full
         ${isDeceased ? "grayscale-[0.4] opacity-80" : ""}
-        ${showAvatar ? "w-20 sm:w-24 md:w-28 bg-surface/70 backdrop-blur-xl hover:shadow-soft-hover" : "px-3"}
+        ${showAvatar ? "w-20 sm:w-24 md:w-28 bg-card border border-border hover:border-foreground/40" : "px-3"}
       `}
     >
       {isRingVisible && (
@@ -63,7 +63,7 @@ export default function FamilyNodeCard({
         <div className="relative z-10 mb-1.5 sm:mb-2">
           <div
             className={`
-              h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 rounded-full flex items-center justify-center text-[10px] sm:text-xs md:text-sm text-white overflow-hidden shrink-0 shadow-lg ring-2 ring-white transition-transform duration-300 group-hover:scale-105
+              h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 rounded-full flex items-center justify-center text-[10px] sm:text-xs md:text-sm text-white overflow-hidden shrink-0 ring-1 ring-border
               ${getAvatarBg(person.gender)}
             `}
           >
@@ -87,8 +87,8 @@ export default function FamilyNodeCard({
       <div className="flex flex-col items-center justify-center gap-1 w-full px-0.5 sm:px-1 relative z-10">
         <div
           className={`
-            text-[10px] sm:text-[11px] md:text-xs font-bold text-center leading-tight transition-colors cursor-pointer
-            ${onClickName ? "text-stone-800 group-hover:text-amber-700 hover:underline" : "text-stone-800 group-hover:text-amber-800"}
+            text-[10px] sm:text-[11px] md:text-xs font-semibold text-center leading-tight transition-colors cursor-pointer
+            ${onClickName ? "text-foreground group-hover:underline" : "text-foreground"}
           `}
           title={person.full_name}
           onClick={(e) => {
